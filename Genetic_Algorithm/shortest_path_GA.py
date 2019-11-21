@@ -71,15 +71,12 @@ def do_crossover(cands, fits):
     first sorts the candidates based on fitness and then crosses-over ith and (N-i)th candidate
     """
     sorted_cands = [i[0] for i in sorted(zip(cands, fits), key = lambda i:i[1])]
-    new_cands = []
     S = len(sorted_cands)
     for i in range(S//2):
         pt = random.randint(1, E-2)
-        new1 = sorted_cands[i][:pt] + sorted_cands[S-i-1][pt:]
-        new2 = sorted_cands[S-i-1][:pt] + sorted_cands[i][pt:]
-        new_cands.append(new1)
-        new_cands.append(new2)
-    return new_cands
+        cands[i] = sorted_cands[i][:pt] + sorted_cands[S-i-1][pt:]
+        cands[S-i-1] = sorted_cands[S-i-1][:pt] + sorted_cands[i][pt:]
+    return cands
 
 # Run the main genetic algorithm
 min_fitness = float('inf')
