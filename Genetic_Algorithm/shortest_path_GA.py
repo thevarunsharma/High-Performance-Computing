@@ -76,7 +76,6 @@ def do_crossover(cands, fits):
         pt = random.randint(1, E-2)
         cands[i] = sorted_cands[i][:pt] + sorted_cands[S-i-1][pt:]
         cands[S-i-1] = sorted_cands[S-i-1][:pt] + sorted_cands[i][pt:]
-    return cands
 
 # Run the main genetic algorithm
 min_fitness = float('inf')
@@ -104,7 +103,7 @@ for i in range(1000):       # perform 1000 iters
         print("Minimum fitness in iteration %2d: %.2f"%(i, min_fit))
     if rep_count == 20:     # if repeated value for 20 iters than break
         break
-    cands = do_crossover(cands, fits)
+    do_crossover(cands, fits)
     
 print("Final candidates after GA search")
 for i in range(len(cands)):
